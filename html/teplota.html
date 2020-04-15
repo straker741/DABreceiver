@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html lang="sk">
+<head>
+    <meta charset="utf-8" />
+    <title>Raspberry pi</title>
+    <link rel="stylesheet" type="text/CSS" href="bakalarka.css">
+    <link rel="shortcut icon" href="obrazky/favicon.ico">
+    <meta author="Jakub Švajka" />
+
+    <script type="text/javascript" src="js/navbox.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">window.data_url = "../getTemperature.php?limit=10";</script>
+    <script type="text/javascript" src="js/linegraph.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="https://www.fei.stuba.sk/">
+                <img src="obrazky/logo_fei.png" alt="Slovenská Technická Univerzita Fakulta Elektrotechniky a Informatiky" />
+            </a>
+        </div>
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="index.html">DOMOV</a></li>
+                <li><a href="sdr.php">SDR</a></li>
+                <li><a href="teplota.html">TEPLOTA</a></li>
+                <li><a href="dokumentacia.html">DOKUMENTÁCIA</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container" id="box">
+            <div class="block_container" id="graf">
+                <div class="block_header">Priebeh teploty snímača DS18B20</div>
+                <div class="block_body">
+                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=lastTen';" value="last 10">
+                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=lastFifty';" value="last 50">
+                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=10';" value="10">
+                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=50';" value="50">
+                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=all';" value="Show all data">
+                    <br />
+                    <canvas id="myChart" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- END OF MAIN -->
+    <div class="validator">
+        Slovenská Technická Univerzita &copy; Jakub Švajka
+    </div>
+</body>
+</html>

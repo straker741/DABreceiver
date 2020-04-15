@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html lang="sk">
+<head>
+    <meta charset="utf-8" />
+    <title>Raspberry pi</title>
+    <link rel="stylesheet" type="text/CSS" href="bakalarka.css">
+    <link rel="shortcut icon" href="obrazky/favicon.ico">
+    <meta author="Jakub Švajka" />
+    <script type="text/javascript" src="js/navbox.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="https://www.fei.stuba.sk/">
+                <img src="obrazky/logo_fei.png" alt="Slovenská Technická Univerzita Fakulta Elektrotechniky a Informatiky" />
+            </a>
+        </div>
+        <nav id="nav">          
+            <ul class="container">
+                <li><a href="index.html">DOMOV</a></li>
+                <li><a href="sdr.php">SDR</a></li>
+                <li><a href="teplota.html">TEPLOTA</a></li>
+                <li><a href="dokumentacia.html">DOKUMENTÁCIA</a></li>
+            </ul>      
+        </nav>
+    </header>
+    <main>
+        <div class="container" id="box">
+            <div class="block_container">
+                <div class="block_header">
+                    Obsah
+                </div>
+                <div class="block_body">
+                    <ul>
+                        <li><a href="#zadanie">Zadanie</a></li>
+                        <li><a href="#abstrakt">Abstrakt</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="block_container" id="zadanie">
+                <div class="block_header">
+                    Zadanie
+                </div>
+                <div class="block_body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Typ práce:</td>
+                                <td>Bakalárska práca</td>
+                            </tr>
+                            <tr>
+                                <td>Autor práce:</td>
+                                <td>Jakub Švajka</td>
+                            </tr>
+                            <tr>
+                                <td>Študijný program:</td>
+                                <td>elektrotechnika</td>
+                            </tr>
+                            <tr>
+                                <td>Študijný odbor:</td>
+                                <td>elektrotechnika</td>
+                            </tr>
+                            <tr>
+                                <td>Evidenčné číslo:</td>
+                                <td>FEI-104418-92409</td>
+                            </tr>
+                            <tr>
+                                <td>ID študenta:</td>
+                                <td>92409</td>
+                            </tr>
+                            <tr>
+                                <td>Vedúci práce:</td>
+                                <td>prof. Ing. René Harťanský, PhD.</td>
+                            </tr>
+                            <tr>
+                                <td>Názov témy:</td>
+                                <td>Raspberry Pi ako dátový prezentačný systém</td>
+                            </tr>
+                            <tr>
+                                <td>Fakulta:</td>
+                                <td>Fakulta elektrotechniky a informatiky</td>
+                            </tr>
+                            <tr>
+                                <td>Akademický rok:</td>
+                                <td>2018/2019</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <article>
+                        <p>Špecifikácia zadania:</p>
+                        <p>
+                            V mnohých priemyselných aplikáciách je potrebné vykonať zber dát, uchovať ich a vhodným spôsobom prezentovať. Veľmi žiadanými riešeniami sú prezentácie pomocou www rozhrania alebo pomocou SNMP "trapov". Úlohou riešiteľa bude pomocou mikropočítača Raspberry Pi zbierať dáta o teplote viacerých objektov dáta uchovávať a prezentovať pomocou html stránky.
+                        </p>
+                        <p>Úlohy:</p>
+                        <p>
+                            <ol>
+                                <li>Oboznámte sa s mikropočítačom Raspberry Pi, jeho portami a možnosťami zberu digitálnych údajov.</li>
+                                <li>Oboznámte sa s princípom fungovania zbernice "One wire" a "I2C".</li>
+                                <li>Oboznámte sa s možnosťami databázového servera "MySQL".</li>
+                                <li>Oboznámte sa s činnosťou www servera "Apache".</li>
+                                <li>Pomocou "One wire" snímačov teploty vykonajte nepretržité snímanie dáta a ich ukladanie do databázy.</li>
+                                <li>Použite vhodný prostriedok (resp. vytvorte skript), ktorý bude v zadaných časových intervaloch prezentovať dáta z databázy vo forme grafu.</li>
+                                <li>Vytvorte technickú dokumentáciu a príručku k obsluhe.</li>
+                            </ol>
+                        </p>
+                    </article>
+                </div>
+            </div>
+            <div class="block_container" id="abstrakt">
+                <div class="block_header">
+                    Abstrakt
+                </div>
+                <div class="block_body">
+                    blabla
+                </div>
+            </div>
+            <div class="block_container">
+                <div class="block_header">
+                    Informácie o lokálnom DAB prenose
+                </div>
+                <div class="block_body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Názov vysielača:</td>
+                                <td class="margin_left">0.0</td>
+                            </tr>
+                            <tr>
+                                <td>Aktuálny čas:</td>
+                                <td class="margin_left">0.0</td>
+                            </tr>
+                            <tr>
+                                <td>Bit Error Rate:</td>
+                                <td class="margin_left">0.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="block_header_mid">
+                    Vysielané stanice:
+                </div>
+                <div class="block_body">
+                    <table>
+                        <!--[0x5208] Radio Patria  [component 0 ASCTy: DAB+ ] [subch 1 bitrate:112 at SAd:102]-->
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Názov</td>
+                                <td>Typ</td>
+                                <td>Bit Rate [kbps]</td>
+                                <td>SAd</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0x5208</td>
+                                <td>Radio Patria</td>
+                                <td>DAB+</td>
+                                <td>112</td>
+                                <td>102</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+     
+    <!-- END OF MAIN -->
+    <div class="validator">
+        Slovenská Technická Univerzita &copy; Jakub Švajka
+    </div>
+</body>
+</html>
