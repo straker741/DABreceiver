@@ -37,7 +37,7 @@ except:
     exit()
 
 try:
-    db = MySQLdb.connect(host="localhost", user="root", passwd="", db="bakalarka")
+    db = MySQLdb.connect(host="localhost", user="stu", passwd="korona2020", db="bakalarka")
     cursor = db.cursor()
 except:
     print("Could not connect to database!")
@@ -74,7 +74,7 @@ try:
     
     # Load font
     try:
-        font = ImageFont.truetype('~/python/Greenscr.ttf', 18)
+        font = ImageFont.truetype('~/DABreceiver/fonts/Greenscr.ttf', 18)
         degreeC = " " + u"\u00F8" + "C"
     except:
         print("Could not find custom font file. Setting default font.")

@@ -4,7 +4,7 @@
 import configHandler
 import subprocess
 
-path = "~/python/"
+path = "~/DABreceiver/python/"
 mode = configHandler.getConfig()[1]
 
 if mode == "search":

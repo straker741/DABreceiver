@@ -32,7 +32,7 @@ def sendTrap():
     pass
 
 try:
-    db = MySQLdb.connect(host="localhost", user="root", passwd="", db="bakalarka")
+    db = MySQLdb.connect(host="localhost", user="stu", passwd="korona2020", db="bakalarka")
     cursor = db.cursor()
 
     # Firstly, get last_datetime
