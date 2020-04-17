@@ -10,9 +10,9 @@ thresholdBER = 0.2
 thresholdSNR = 5
 thresholdError = 10
 
-core_loggit  = "SELECT t1.id, t1.value AS BER, t2.value AS SNR, t3.value AS FIBER, t1.datetime "
+core_loggit  = "SELECT t1.id, t1.value AS BER, t2.SNR AS SNR, t2.bandwidth AS BW, t3.value AS FIBER, t1.datetime "
 core_loggit += "FROM biterrorratio AS t1 "
-core_loggit += "JOIN signaltonoiseratio AS t2 ON t1.datetime = t2.datetime "
+core_loggit += "JOIN dabtable AS t2 ON t1.datetime = t2.datetime "
 core_loggit += "JOIN fiberrorratio AS t3 ON t1.datetime = t3.datetime "
 
 # ----------------- FUNCTIONS ----------------- #
@@ -62,16 +62,16 @@ try:
         for row in data:
             # row[1] == BER         worst case:   BER >= 0.5   best case: BER   -> 0
             # row[2] == SNR         worst case:   SNR -> ?     best case: SNR   -> infinity
-            # row[3] == FIBER       worst case: FIBER -> 1     best case: FIBER -> 0
+            # row[4] == FIBER       worst case: FIBER -> 1     best case: FIBER -> 0
             meanBER = A * row[1] + (1 - A) * meanBER
             meanSNR = A * row[2] + (1 - A) * meanSNR
             
             if meanBER < thresholdBER:
-                if (meanSNR < thresholdSNR and row[3] > 0.95):
+                if (meanSNR < thresholdSNR and row[4] > 0.95):
                     # Impossible but count as error anyway
                     error += 1
             else:
-                if row[3] != 0:
+                if row[4] != 0:
                     # Bad Signal
                     error += 1
 
