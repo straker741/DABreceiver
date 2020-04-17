@@ -10,10 +10,9 @@ thresholdBER = 0.2
 thresholdSNR = 5
 thresholdError = 10
 
-core_loggit  = "SELECT t1.id, t1.value AS BER, t2.SNR AS SNR, t2.bandwidth AS BW, t3.value AS FIBER, t1.datetime "
-core_loggit += "FROM biterrorratio AS t1 "
-core_loggit += "JOIN dabtable AS t2 ON t1.datetime = t2.datetime "
-core_loggit += "JOIN fiberrorratio AS t3 ON t1.datetime = t3.datetime "
+core_loggit  = "SELECT t1.id, t1.BER AS BER, t1.FIBER AS FIBER, t2.SNR AS SNR, t2.bandwidth AS BW, t1.datetime "
+core_loggit += "FROM dabtable1 AS t1 "
+core_loggit += "JOIN dabtable2 AS t2 ON t1.datetime = t2.datetime "
 
 # ----------------- FUNCTIONS ----------------- #
 def getLastDateTime():
@@ -61,8 +60,8 @@ try:
         # Evaluate Data and decide whether to send SNMP Trap !
         for row in data:
             # row[1] == BER         worst case:   BER >= 0.5   best case: BER   -> 0
-            # row[2] == SNR         worst case:   SNR -> ?     best case: SNR   -> infinity
-            # row[4] == FIBER       worst case: FIBER -> 1     best case: FIBER -> 0
+            # row[3] == SNR         worst case:   SNR -> ?     best case: SNR   -> infinity
+            # row[2] == FIBER       worst case: FIBER -> 1     best case: FIBER -> 0
             meanBER = A * row[1] + (1 - A) * meanBER
             meanSNR = A * row[2] + (1 - A) * meanSNR
             
