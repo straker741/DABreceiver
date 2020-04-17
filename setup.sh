@@ -45,8 +45,9 @@ sudo apt install -y python-imaging python-smbus i2c-tools python3-pil
 git clone https://github.com/adafruit/Adafruit_SSD1306.git
 
 # ALSA
-sudo apt-get install -y libasound2 alsa-utils alsa-oss
+#sudo apt-get install -y libasound2 alsa-utils alsa-oss
 #alsa-base
+
 # Welle.io
 sudo apt-get install -y libfftw3-dev librtlsdr-dev libfaad-dev libmp3lame-dev libmpg123-dev
 git clone https://github.com/straker741/welle.io

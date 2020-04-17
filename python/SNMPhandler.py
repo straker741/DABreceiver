@@ -16,7 +16,7 @@ core_loggit += "JOIN dabtable2 AS t2 ON t1.datetime = t2.datetime "
 
 # ----------------- FUNCTIONS ----------------- #
 def getLastDateTime():
-    cursor.execute("SELECT id, datetime FROM biterrorratio WHERE id=(SELECT MAX(id) FROM biterrorratio)")
+    cursor.execute("SELECT id, datetime FROM dabtable1 WHERE id=(SELECT MAX(id) FROM dabtable1)")
     db.commit()
     data = cursor.fetchone()     
     if data is not None:
@@ -60,10 +60,11 @@ try:
         # Evaluate Data and decide whether to send SNMP Trap !
         for row in data:
             # row[1] == BER         worst case:   BER >= 0.5   best case: BER   -> 0
-            # row[3] == SNR         worst case:   SNR -> ?     best case: SNR   -> infinity
             # row[2] == FIBER       worst case: FIBER -> 1     best case: FIBER -> 0
+            # row[3] == SNR         worst case:   SNR -> ?     best case: SNR   -> infinity
+            # row[4] == BW          worst case:    BW -> ?     best case: BW    -> 1536000
             meanBER = A * row[1] + (1 - A) * meanBER
-            meanSNR = A * row[2] + (1 - A) * meanSNR
+            meanSNR = A * row[3] + (1 - A) * meanSNR
             
             if meanBER < thresholdBER:
                 if (meanSNR < thresholdSNR and row[4] > 0.95):
