@@ -15,7 +15,6 @@ def MAX(arr):
     except:
         print("{MAX()} Generic Error.")
         return -1
-    pass
 
 def MIN(arr):
     """Finds smallest number in an array."""
@@ -28,7 +27,6 @@ def MIN(arr):
     except:
         print("{MIN()} Generic Error.")
         return -1
-    pass
 
 def SUM(arr):
     """Sum of all numbers in an array."""
@@ -40,7 +38,6 @@ def SUM(arr):
     except:
         print("{SUM()} Error: At least one value of an array is not a convertible number.")
         return -1
-    pass
 
 def AVG(arr):
     """Average of all numbers in an array."""
@@ -53,12 +50,20 @@ def AVG(arr):
     except:
         print("{AVG()} Error: At least one value of an array is not a convertible number.")
         return -1
-    pass
 
+def ABS(a):
+    """Returns absolute value of a number."""
+    try:
+        if a < 0: 
+            return a * (-1)
+        else:
+            return a
+    except:
+        print("Error. Not possible to return absolute value of the number!")
+        return a
 def convertToDecibel(num):
     try:
         return 10*log10(num)
     except:
         print("Error. Cannot convert to decibel!")
         return -1
-    pass

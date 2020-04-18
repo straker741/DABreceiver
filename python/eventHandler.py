@@ -12,7 +12,7 @@ if mode == "explore":
     subprocess.run("pkill -f welle-cli", shell=True)
  
     # Check how many processes with name explore.py are running
-    # Note that when starting process ps fx, total 3 processes are found
+    # Note that when starting process ps fx, total 3 and more processes are found
     p = subprocess.Popen("ps fx | grep explore.py", stdout=subprocess.PIPE, universal_newlines=True, shell=True)
     out = p.communicate()[0].splitlines()
 
@@ -24,6 +24,14 @@ elif mode == "monitor":
     # Kill processes if exist
     subprocess.run("pkill -f explore.py", shell=True)
     subprocess.run("pkill -f welle-cli", shell=True)
+
+    # Check how many processes with name SNMPhandler.py are running
+    # Note that when starting process ps fx, total 3 and more processes are found
+    p = subprocess.Popen("ps fx | grep SNMPhandler.py", stdout=subprocess.PIPE, universal_newlines=True, shell=True)
+    out = p.communicate()[0].splitlines()
+    if len(out) < 3:
+        # SNMPhandler is not running! Start SNMPhandler.py!
+        subprocess.run("nohup python3 " + path + "SNMPhandler.py >/dev/null 2>&1 &", shell=True)
 
     # Start monitor.py
     subprocess.run("nohup python " + path + "monitor.py >/dev/null 2>&1 &", shell=True)
