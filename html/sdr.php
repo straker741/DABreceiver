@@ -40,6 +40,18 @@
         "239200000" => "13F",
     );
     
+    function getBandwidth() {		
+        $myfile = fopen("~DABreceiver/python/bandwidth.txt", "r") or die("Unable to open file!");
+        $bw = trim(fgets($myfile));    
+        fclose($myfile);
+        if (is_numeric($bw)) {
+            return $bw;
+        }
+		else {
+            return "Nepodarilo sa načítať frekvenciu!";	
+        }
+	}
+
     function getFrequency() {		
 		global $channels;
         $myfile = fopen("/var/www/html/config.txt", "r") or die("Unable to open file!");
@@ -62,11 +74,11 @@
                     $freq = $_GET['freq'] * 1000;
                     $setConfig = TRUE;
 
-                    if ($_GET['mode'] == "analyze" or $_GET['mode'] == "search") {
+                    if ($_GET['mode'] == "explore" or $_GET['mode'] == "monitor") {
                         $mode = $_GET['mode'];
                     }
                     else {
-                        $mode = "search";
+                        $mode = "explore";
                     }     
 				}
 			}
@@ -143,8 +155,8 @@
                                     <td><label for="mode">Zvoľte pracovný mód:</label></td>
                                     <td>                                     
                                         <select name="mode" id="mode">
-                                            <option value="search">Search</option>
-                                            <option value="analyze">Analyze</option>
+                                            <option value="explore">Explore</option>
+                                            <option value="monitor">Monitor</option>
                                         </select>                                                                       
                                     </td>
                                     							
@@ -162,7 +174,38 @@
                     <p>Tuner Fitipower FC0012 je schopný fungovať len v pásme Band III.</p>
                     <br />
                     <hr />
-                    <img id="image_psd" src="obrazky/power_spectral_density.png" alt="Power spectral density">
+                    <img id="image_psd" src="obrazky/power_spectral_density.png" alt="Power Spectral Density">
+                </div>
+            </div>
+            <div class="block_container">
+                <div class="block_header">
+                    Informácie o lokálnom DAB prenose
+                </div>
+                <div class="block_body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Šírka pásma:</td>
+                                <td>
+                                    <?php
+                                       echo getBandwidth();								
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Signal To Noise Ratio:</td>
+                                <td>0.0</td>
+                            </tr>                           
+                            <tr>
+                                <td>Bit Error Rate:</td>
+                                <td>0.0</td>
+                            </tr>
+                            <tr>
+                                <td>Faulty Fast Information Blocks Error Ratio:</td>
+                                <td>0.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

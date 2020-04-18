@@ -79,7 +79,7 @@ def getConfig():
     f = int(config[0])
     mode = config[1]
 
-    if (f in DABchannels and (mode == "search" or mode == "analyze")):
+    if (f in DABchannels and (mode == "explore" or mode == "monitor")):
         return f, mode
     else:
-        return 227360000, "search"    # Kamzik - Bratislava
+        return 227360000, "explore"    # Kamzik - Bratislava
