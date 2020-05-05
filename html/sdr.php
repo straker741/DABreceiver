@@ -41,20 +41,20 @@
     );
     
     function getBandwidth() {		
-        $myfile = fopen("~DABreceiver/python/bandwidth.txt", "r") or die("Unable to open file!");
+        $myfile = fopen("/home/pi/DABreceiver/python/bandwidth.txt", "r");
         $bw = trim(fgets($myfile));    
         fclose($myfile);
         if (is_numeric($bw)) {
             return $bw;
         }
 		else {
-            return "Nepodarilo sa načítať frekvenciu!";	
+            return "Nepodarilo sa načítať šírku pásma!";	
         }
 	}
 
     function getFrequency() {		
 		global $channels;
-        $myfile = fopen("/var/www/html/config.txt", "r") or die("Unable to open file!");
+        $myfile = fopen("/var/www/html/config.txt", "r");
         $freq = trim(fgets($myfile));    
         fclose($myfile);
         if (isset($channels[$freq])) {
@@ -84,12 +84,12 @@
 			}
 		}
         if($setConfig) {
-			$myfile = fopen("/var/www/html/config.txt", "w") or die("Unable to open file!");
+			$myfile = fopen("/var/www/html/config.txt", "w");
 			settype($freq, "string");			
 			fwrite($myfile, $freq . "\n" . $mode . "\n");
             fclose($myfile);
             // Start shell command        
-            shell_exec('python3 ~/DABreceiver/python/eventHandler.py');
+            shell_exec('python3 /home/pi/DABreceiver/python/eventHandler.py');
 		}
 	}
 	setConfig();

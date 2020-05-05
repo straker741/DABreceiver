@@ -4,7 +4,7 @@
 import fileHandler
 import subprocess
 
-path = "~/DABreceiver/python/"
+path = "/home/pi/DABreceiver/python/"
 mode = fileHandler.getConfig()[1]
 
 if mode == "explore":

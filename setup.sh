@@ -23,7 +23,7 @@ YELLOW_COLOUR='\033[1;33m'
 GREEN_COLOUR='\033[1;32m'
 while [[ 0 ]]
 do
-    echo -e "${YELLOW_COLOUR}Zadajte IP adresu, na ktorej sa nachadza SNMP manazer: ${DEFAULT_COLOUR}"
+    echo -e "${YELLOW_COLOUR}Zadajte IPv4 adresu, na ktorej sa nachadza SNMP manazer: ${DEFAULT_COLOUR}"
     read -p "" target
     if validate_ip $target; then break; else echo -e "${RED_COLOUR}Zadali ste nespravny tvar IP adresy!"; fi
 done
@@ -33,6 +33,13 @@ read -p "" location
 echo -e "${GREEN_COLOUR}OK!${DEFAULT_COLOUR}"
 echo $location > ~/DABreceiver/trapConfig.txt
 echo $target >> ~/DABreceiver/trapConfig.txt
+
+# Changing the access permissions of files
+chmod +x ~/DABreceiver/install/welle.sh
+chmod +x ~/DABreceiver/install/mysql/mysql.sh
+chmod +x ~/DABreceiver/install/mysql/mysql_tables.sh
+chmod +x ~/DABreceiver/install/mysql/mysql_db_user.sh
+sudo chmod 666 ~/DABreceiver/python/bandwidth.txt
 
 sudo apt-get -y update && sudo apt-get -y upgrade
 
@@ -47,7 +54,12 @@ sudo apt-get install -y expect
 
 # Apache Web Server
 sudo apt-get install -y apache2
-sudo cp ~/DABreceiver/html/* /var/www/html
+sudo cp -r ~/DABreceiver/html/* /var/www/html
+sudo chmod 666 /var/www/html/config.txt
+sudo chmod 777 /var/www/html/obrazky
+
+# PHP
+sudo apt-get install -y php libapache2-mod-php
 
 # MySQL
 sudo apt-get install -y mariadb-server
@@ -89,23 +101,20 @@ wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice
 
 # radio Kraków, low noise 30-40 dB (?)
 wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1.raw -P ~/DABreceiver/welle.io/data/
-wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1_long.raw -P ~/DABreceiver/welle.io/data/
+#wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1_long.raw -P ~/DABreceiver/welle.io/data/
 
 # ak to nepojde skus nieco z tohto: 
 #sudo apt install mesa-common-dev libglu1-mesa-dev libpulse-dev libsoapysdr-dev libairspy-dev  libusb-1.0-0-dev
 #sudo apt-get install -y libusb-1.0-0-dev   # iba test - vymazat!!!
 
 # -------------------------------------------------------------------------------
-#MATPLOTLIB !!!!
-#Installing an official release
-#Matplotlib and its dependencies are available as wheel packages for macOS, Windows and Linux distributions:
-sudo pip install -U matplotlib
+# MATPLOTLIB
+sudo apt-get install -y python-matplotlib
 
 
 
-
-#RTLSDR !!!
-
+# RTLSDR - defaultne je uz nainstalovany
+sudo apt-get install -y rtl-sdr
 
 
 

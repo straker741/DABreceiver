@@ -14,7 +14,7 @@ try:
 
         # Check bandwidth 
         bandwidth = DABplus.checkBandwidth(sdr, f)
-        fileHandler.wFile("~/DABreceiver/python/bandwidth.txt", bandwidth)
+        fileHandler.wFile("/home/pi/DABreceiver/python/bandwidth.txt", bandwidth)
 
         sleep(4)
 except:

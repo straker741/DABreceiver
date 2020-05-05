@@ -47,30 +47,27 @@ def fHrany(midValue):
 # This describes how power of a signal or time series is distributed over frequency 
 def doPSD(sdr, centerFrequency):
     """ Odcita vzorky, ktore potom spracuje a vykresli do grafu.
-        Funkcia konci ulozenim grafu do .png formatu a ukoncenim kernel modulu.         """
-    try:
-        global hodnoty, frekvencie
-        # configuring device
-        sdr.sample_rate = 2.4e6
-        sdr.center_freq = centerFrequency
-        sdr.gain = 7.1              # Podporovane hodnoty gain: [-9.9; -4; 7.1; 17.9; 19.2]
+        Funkcia konci ulozenim grafu do .png formatu a ukoncenim kernel modulu."""
 
-        samples = sdr.read_samples(number_of_FFT*256) # == 262 144 komplexnych cisel
+    global hodnoty, frekvencie
+    # configuring device
+    sdr.sample_rate = 2.4e6
+    sdr.center_freq = centerFrequency
+    sdr.gain = 7.1              # Podporovane hodnoty gain: [-9.9; -4; 7.1; 17.9; 19.2]
 
-        # Using matplotlib.pyplot to estimate and plot the Power Spectral Density
-        result = plt.psd(samples, NFFT=number_of_FFT, Fs=sdr.sample_rate, Fc=sdr.center_freq)
+    samples = sdr.read_samples(number_of_FFT*256) # == 262 144 komplexnych cisel
 
-        hodnoty = result[0]         # 'hodnoty' predstavuju vykon a maju absolutnu velkost
-        frekvencie = result[1]      # 'frekvencie' su hodnoty prisluchajuce jednotlivym hodnotam 'hodnoty'
-        
-        # Save figure (Line2D object)
-        # Urobi graf: ['frekvencie', 'hodnoty'] ale hodnoty su uz premenene na db ako 10*log_10(hodnoty[_])
-        plt.savefig('/var/www/html/obrazky/power_spectral_density.png')
-        # Clearing figure
-        plt.clf()
-        
-    except:
-        print("Exception in function {doPSD}.")
+    # Using matplotlib.pyplot to estimate and plot the Power Spectral Density
+    result = plt.psd(samples, NFFT=number_of_FFT, Fs=sdr.sample_rate, Fc=sdr.center_freq)
+
+    hodnoty = result[0]         # 'hodnoty' predstavuju vykon a maju absolutnu velkost
+    frekvencie = result[1]      # 'frekvencie' su hodnoty prisluchajuce jednotlivym hodnotam 'hodnoty'
+    
+    # Save figure (Line2D object)
+    # Urobi graf: ['frekvencie', 'hodnoty'] ale hodnoty su uz premenene na db ako 10*log_10(hodnoty[_])
+    plt.savefig('/var/www/html/obrazky/power_spectral_density.png')
+    # Clearing figure
+    plt.clf()
 
 def checkBandwidth(sdr, centerFrequency): 
     global hodnoty, frekvencie
