@@ -88,13 +88,8 @@
 			settype($freq, "string");			
 			fwrite($myfile, $freq . "\n" . $mode . "\n");
             fclose($myfile);
-            // Start shell command
-            //$error = shell_exec('/usr/bin/nohup /usr/bin/python3 /var/www/html/python/eventHandler.py >/dev/null 2>&1 &');
-            
-            $error = shell_exec('python3 ~/DABreceiver/python/eventHandler.py');
-            $myfile = fopen("~/DABreceiver/python/test.txt", "w") or die("Unable to open file!");
-            fwrite($myfile, $error . "\n");
-            fclose($myfile);
+            // Start shell command        
+            shell_exec('python3 ~/DABreceiver/python/eventHandler.py');
 		}
 	}
 	setConfig();

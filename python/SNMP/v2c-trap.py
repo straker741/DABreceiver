@@ -42,7 +42,7 @@ config.addTransport(
 )
 config.addTargetAddr(
     snmpEngine, 'my-nms',
-    udp.domainName, ('104.236.166.95', 162),
+    udp.domainName, ('192.168.178.34', 162),
     'my-creds',
     tagList='all-my-managers'
 )
