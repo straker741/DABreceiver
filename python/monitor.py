@@ -24,4 +24,4 @@ if True:
         # Executing command - oppening pipe
         subprocess.run(cmd, shell=True)
 else:
-    fileHandler.wFile("~/DABreceiver/python/bandwidth.txt", bandwidth)
+    fileHandler.wFile("/home/pi/DABreceiver/python/bandwidth.txt", bandwidth)
