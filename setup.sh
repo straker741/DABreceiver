@@ -36,6 +36,7 @@ echo $target >> ~/DABreceiver/trapConfig.txt
 
 # Changing the access permissions of files
 chmod +x ~/DABreceiver/install/welle.sh
+chmod +x ~/DABreceiver/install/enable_interfaces.sh
 chmod +x ~/DABreceiver/install/mysql/mysql.sh
 chmod +x ~/DABreceiver/install/mysql/mysql_tables.sh
 chmod +x ~/DABreceiver/install/mysql/mysql_db_user.sh
@@ -66,17 +67,23 @@ sudo apt-get install -y mariadb-server
 
 # Setting up MySQL
 ~/DABreceiver/install/mysql/mysql.sh
+echo -e "${GREEN_COLOUR}mysql.sh OK!${DEFAULT_COLOUR}"
 
 # Creating a MySQL Database and User
 ~/DABreceiver/install/mysql/mysql_db_user.sh
+echo -e "${GREEN_COLOUR}mysql_db_user.sh OK!${DEFAULT_COLOUR}"
 
 # Creating MySQL tables
 ~/DABreceiver/install/mysql/mysql_tables.sh
+echo -e "${GREEN_COLOUR}mysql_tables.sh OK!${DEFAULT_COLOUR}"
 
 # MySQL connectors
 sudo apt-get install -y php-mysql
 sudo apt-get install -y python-mysqldb
 sudo apt-get install -y libmysqlcppconn-dev
+
+# RTLSDR - defaultne je uz nainstalovany
+sudo apt-get install -y rtl-sdr
 
 # pyrtlsdr - Python kniznica na komunikaciu s driverom
 # https://pypi.org/project/pyrtlsdr/
@@ -84,16 +91,21 @@ sudo pip install pyrtlsdr
 # pysnmp
 sudo pip install pysnmp
 
-# I2C
+# 1-Wire a I2C
 sudo apt install -y python-imaging python-smbus i2c-tools python3-pil
+~/DABreceiver/install/enable_interfaces.sh
 
 # Adafruit 
 git clone https://github.com/adafruit/Adafruit_SSD1306.git
+
+# MATPLOTLIB
+sudo apt-get install -y python-matplotlib
 
 # Welle.io
 sudo apt-get install -y libfftw3-dev librtlsdr-dev libfaad-dev libmp3lame-dev libmpg123-dev
 git clone https://github.com/straker741/welle.io
 ~/DABreceiver/install/welle.sh
+echo -e "${GREEN_COLOUR}WELLE.IO OK!${DEFAULT_COLOUR}"
 
 # Download some data for testing
 #wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice_iq.dat -P ~/DABreceiver/welle.io/data/
@@ -105,16 +117,9 @@ wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229
 
 # ak to nepojde skus nieco z tohto: 
 #sudo apt install mesa-common-dev libglu1-mesa-dev libpulse-dev libsoapysdr-dev libairspy-dev  libusb-1.0-0-dev
-#sudo apt-get install -y libusb-1.0-0-dev   # iba test - vymazat!!!
-
-# -------------------------------------------------------------------------------
-# MATPLOTLIB
-sudo apt-get install -y python-matplotlib
 
 
 
-# RTLSDR - defaultne je uz nainstalovany
-sudo apt-get install -y rtl-sdr
 
 
 
