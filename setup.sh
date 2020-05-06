@@ -37,12 +37,14 @@ echo $target >> ~/DABreceiver/trapConfig.txt
 # Changing the access permissions of files
 chmod +x ~/DABreceiver/install/welle.sh
 chmod +x ~/DABreceiver/install/enable_interfaces.sh
+chmod +x ~/DABreceiver/install/change_apache2_configuration.sh
 chmod +x ~/DABreceiver/install/mysql/mysql.sh
 chmod +x ~/DABreceiver/install/mysql/mysql_tables.sh
 chmod +x ~/DABreceiver/install/mysql/mysql_db_user.sh
+chmod +x ~/DABreceiver/python/*
 sudo chmod 666 ~/DABreceiver/python/bandwidth.txt
 
-sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get update && sudo apt-get -y upgrade
 
 # pip
 sudo apt-get install -y python3-pip python-pip
@@ -55,9 +57,7 @@ sudo apt-get install -y expect
 
 # Apache Web Server
 sudo apt-get install -y apache2
-sudo cp -r ~/DABreceiver/html/* /var/www/html
-sudo chmod 666 /var/www/html/config.txt
-sudo chmod 777 /var/www/html/obrazky
+~/DABreceiver/install/change_apache2_configuration.sh
 
 # PHP
 sudo apt-get install -y php libapache2-mod-php
@@ -67,15 +67,12 @@ sudo apt-get install -y mariadb-server
 
 # Setting up MySQL
 ~/DABreceiver/install/mysql/mysql.sh
-echo -e "${GREEN_COLOUR}mysql.sh OK!${DEFAULT_COLOUR}"
 
 # Creating a MySQL Database and User
 ~/DABreceiver/install/mysql/mysql_db_user.sh
-echo -e "${GREEN_COLOUR}mysql_db_user.sh OK!${DEFAULT_COLOUR}"
 
 # Creating MySQL tables
 ~/DABreceiver/install/mysql/mysql_tables.sh
-echo -e "${GREEN_COLOUR}mysql_tables.sh OK!${DEFAULT_COLOUR}"
 
 # MySQL connectors
 sudo apt-get install -y php-mysql
@@ -96,24 +93,23 @@ sudo apt install -y python-imaging python-smbus i2c-tools python3-pil
 ~/DABreceiver/install/enable_interfaces.sh
 
 # Adafruit 
-git clone https://github.com/adafruit/Adafruit_SSD1306.git
+git clone https://github.com/adafruit/Adafruit_SSD1306.git ~/DABreceiver/Adafruit_SSD1306
 
 # MATPLOTLIB
 sudo apt-get install -y python-matplotlib
 
 # Welle.io
 sudo apt-get install -y libfftw3-dev librtlsdr-dev libfaad-dev libmp3lame-dev libmpg123-dev
-git clone https://github.com/straker741/welle.io
+git clone https://github.com/straker741/welle.io ~/DABreceiver/welle.io
 ~/DABreceiver/install/welle.sh
-echo -e "${GREEN_COLOUR}WELLE.IO OK!${DEFAULT_COLOUR}"
 
 # Download some data for testing
-#wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice_iq.dat -P ~/DABreceiver/welle.io/data/
-wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice_iq.raw -P ~/DABreceiver/welle.io/data/ 
+#wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice_iq.dat -P ~/DABreceiver/data/
+wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/Record3_katowice_iq.raw -P ~/DABreceiver/data/ 
 
 # radio Kraków, low noise 30-40 dB (?)
-wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1.raw -P ~/DABreceiver/welle.io/data/
-#wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1_long.raw -P ~/DABreceiver/welle.io/data/
+wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1.raw -P ~/DABreceiver/data/
+#wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229072kHz_fs2048kHz_gain42_1_long.raw -P ~/DABreceiver/data/
 
 # ak to nepojde skus nieco z tohto: 
 #sudo apt install mesa-common-dev libglu1-mesa-dev libpulse-dev libsoapysdr-dev libairspy-dev  libusb-1.0-0-dev
@@ -122,6 +118,6 @@ wget -c https://sdr.kt.agh.edu.pl/sdrdab-decoder/downloads/data/antena-1_dab_229
 
 
 
-
+echo -e "${GREEN_COLOUR}REBOOTING!${DEFAULT_COLOUR}"
 # END !
 sudo reboot
