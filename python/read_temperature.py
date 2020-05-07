@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Autor: Jakub Svajka
 # Date:  11.3.2020
 # -------------------- # Adafruit_SSD1306 library # ------------------------- #
@@ -71,17 +72,18 @@ try:
     bottom = height-padding
     # Move left to right keeping track of the current x position for drawing shapes.
     x = 0
-    
+except:
+    display = False
+    print("Display is not connected or library Adafruit_SSD1306 is missing!")
+
+if display:
     # Load font
     try:
-        font = ImageFont.truetype('~/DABreceiver/fonts/Greenscr.ttf', 18)
+        font = ImageFont.truetype('/home/pi/DABreceiver/fonts/Greenscr.ttf', 18)
         degreeC = " " + u"\u00F8" + "C"
     except:
         print("Could not find custom font file. Setting default font.")
         font = ImageFont.load_default()
-except:
-    display = False
-    print("Display is not connected or library Adafruit_SSD1306 is missing!")
 
 # Functions
 def read_temp_raw():
@@ -118,7 +120,7 @@ try:
             disp.image(image)
             disp.display()
         time.sleep(1)
-except:
+except KeyboardInterrupt:
     print("End of temperature readings!")
     cursor.close()
     db.close()
