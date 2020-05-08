@@ -117,15 +117,11 @@ meanBER = 0
 meanSNR = 0
 error = 0
 N = 0
-showQuery = True
 try:
     # Main never-ending loop 
     while True:
         dt = newestDateTimeOfData.strftime('%Y-%m-%d %H-%M-%S')
-        q = core_q + "WHERE t1.datetime > '" + dt + "'"
-        if showQuery:
-            print(q)
-            showQuery = False
+        q = core_q + "WHERE t1.datetime > '" + dt + "'"       
         cursor.execute(q)
         db.commit()
         data = cursor.fetchall()
@@ -140,20 +136,26 @@ try:
             meanBER = A * row[1] + (1 - A) * meanBER
             meanSNR = A * row[3] + (1 - A) * meanSNR
 
+            errorOccurred = False
             if (meanBER < thresholdBER and (mySimpleMathLib.ABS(row[4] - 1536000) <= thresholdBW)):
                 if (meanSNR < thresholdSNR and row[4] > 0.95):
                     # Impossible but count as error anyway
                     error += 1
+                    errorOccurred = True
+                    print("{1.} Error !")
             else:
                 if row[4] != 0:
                     # Bad Signal
                     error += 1
+                    errorOccurred = True
+                    print("{2.} Error !")
             
-            if error > thresholdError:
+            if errorOccurred and error > thresholdError:
                 print("Sending SNMP Trap!")
                 SNMPhandler.sendTrap()
                 error = 0
-            
+            elif not errorOccurred and error > 0:
+                error -= 1      # In case some random error occured (false alarm)         
 
         # DELETE DATA FROM DB AFTER SOME TIME !!!
         N += len(data)
