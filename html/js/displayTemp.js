@@ -1,36 +1,30 @@
 var data_url = "../getTemperature.php?limit=10";
+var lastDateTime = "";
+var numberOfElements = 10;
+var changeOccurred = true;
 
-function clickedButton(element) {
+function clickedButton(element) {  
     switch (element.id) {
-        case "btn_temp_last_10":
-            data_url = "../getTemperature.php?limit=lastTen";
-            break;
-        case "btn_temp_last_50":
-            data_url = "../getTemperature.php?limit=lastFifty";
-            break;
         case "btn_temp_10":
-            data_url = "../getTemperature.php?limit=10";
+            numberOfElements = 10;
             break;
         case "btn_temp_50":
-            data_url = "../getTemperature.php?limit=50";
+            numberOfElements = 50;
             break;
         case "btn_temp_all":
-            data_url = "../getTemperature.php?limit=all";
+            numberOfElements = "all";
             break;
         default:
-            data_url = "../getTemperature.php?limit=10";
+            numberOfElements = 10;
             break;
     }
+    changeOccurred = true;
+    lastDateTime = "";
+    data_url = "../getTemperature.php?limit=" + numberOfElements;
     return false;
 }
 
 window.onload = function () {
-    document.getElementById("btn_temp_last_10").addEventListener("click", function() {
-        clickedButton(document.getElementById("btn_temp_last_10"));
-    }, false);
-    document.getElementById("btn_temp_last_50").addEventListener("click", function() {
-        clickedButton(document.getElementById("btn_temp_last_50"));
-    }, false);
     document.getElementById("btn_temp_10").addEventListener("click", function() {
         clickedButton(document.getElementById("btn_temp_10"));
     }, false);
@@ -96,20 +90,57 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // chart update
     var updateChart = function () {
-        // ../getTemperature.php?limit=all
+        if (lastDateTime === "") {
+            full_url = data_url;
+        }
+        else {
+            full_url = data_url + "&dt=" + lastDateTime;
+        }
+
         $.ajax({
-            url: data_url,
+            url: full_url,
             type: "GET",
             success: function (data) {
-                
-                myLineChart.data.datasets[0].data = [];
-                myLineChart.data.labels = [];
-
-                for (var j in data) {
-                    myLineChart.data.datasets[0].data.push(data[j].temp);
-                    myLineChart.data.labels.push(data[j].datetime);
+                if (!(data.length === 0)) {
+                    if (changeOccurred === true) {
+                        // True when change of limit occures
+                        myLineChart.data.datasets[0].data = [];
+                        myLineChart.data.labels = [];
+                        for (var j in data) {
+                            myLineChart.data.datasets[0].data.push(data[j].temp);
+                            myLineChart.data.labels.push(data[j].datetime);
+                        }
+                        changeOccurred = false;
+                    }
+                    else {
+                        if (numberOfElements === "all") {
+                            // True when all data are being shown
+                            for (var j in data) {
+                                myLineChart.data.datasets[0].data.push(data[j].temp);
+                                myLineChart.data.labels.push(data[j].datetime);
+                            }
+                        }
+                        else if (numberOfElements > myLineChart.data.datasets[0].data.length) {
+                            for (var j in data) {
+                                myLineChart.data.datasets[0].data.push(data[j].temp);
+                                myLineChart.data.labels.push(data[j].datetime);
+                            }
+                        }
+                        else {
+                            for (var j in data) {
+                                myLineChart.data.datasets[0].data.shift();
+                                myLineChart.data.datasets[0].data.push(data[j].temp);
+                                myLineChart.data.labels.shift();
+                                myLineChart.data.labels.push(data[j].datetime);
+                            }
+                        }
+                    }
+                    
+                    lastDateTime = data[data.length - 1].datetime;
+                    lastDateTime = lastDateTime.replace(/:/g, "-");
+                    lastDateTime = encodeURIComponent(lastDateTime);
                 }
-
+                
                 myLineChart.update();
             },
             error: function (data) {

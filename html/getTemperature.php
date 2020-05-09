@@ -8,59 +8,67 @@ define('DB_USERNAME', 'stu');
 define('DB_PASSWORD', 'korona2020');
 define('DB_NAME', 'bakalarka');
 
+function is_datetime($dt) {
+    if (isset($_GET['dt'])) {
+        if (is_string($dt)) {
+            if (strptime($dt, '%Y-%m-%d %H-%M-%S') || strptime($dt, '%Y-%m-%d %H:%M:%S')) {
+                return TRUE;
+            }
+        }
+    }
+    return FALSE;
+}
+
 //variables
-$query = "SELECT * FROM temperature";
-$onlyLast = True;
-$onlyRecent = True;
 $showAll = False;
 
-//clean up GET action
+//clean up GET action $_GET['dt']
+if (is_datetime(urldecode($_GET['dt']))) {
+    $setDateTime = TRUE;
+    $lastDateTime = urldecode($_GET['dt']);
+}
+else {
+    $setDateTime = FALSE;
+}
+
+//clean up GET action $_GET['limit']
 if(isset($_GET['limit'])) {
-
 	if(is_numeric($_GET['limit'])) {
-
 		switch ($_GET['limit']) {
-			case '10':
-				$limit = 10;
-				break;
 			case '50':
 				$limit = 50;
-				break;	
+                break;
+            case '10':
 			default:
-				$limit = 20;			
+				$limit = 10;			
 				break;
-		}		
+        }
+        $showAll = False;
 	}
 	else {
-		$onlyRecent = False;
-		switch ($_GET['limit']) {
-			case 'lastTen':
-				$limit = 10;				
-				break;
-			case 'lastFifty':
-				$limit = 50;
-				break;	
-			default:
-				//we get all the data
-				//$query = "SELECT * FROM temperature";
-				$onlyLast = False; //pointless
-				$showAll = True;
-				break;
-		}	
+        $showAll = True;
 	}
+}
+else {
+    $showAll = True;
 }
 
 //build query
-if(!($showAll)) {
-	$query = 
-		"SELECT * FROM (
-			SELECT * 
-			FROM temperature "
-			. ($onlyRecent ? "WHERE datetime > timestamp(DATE_SUB(NOW(), INTERVAL 30 MINUTE)) " : "") .
-			"ORDER BY datetime desc "
-			. ($onlyLast ? ("LIMIT " . $limit . " ") : "") . 
-		") t 
-		ORDER BY datetime asc";
+if ($setDateTime) {
+    if ($showAll) {
+        $query = sprintf("SELECT * FROM (SELECT * FROM temperature WHERE datetime > '%s') t ORDER BY datetime asc", $lastDateTime);
+    }
+    else {
+        $query = sprintf("SELECT * FROM (SELECT * FROM temperature WHERE datetime > '%s' ORDER BY datetime desc LIMIT %d) t ORDER BY datetime asc", $lastDateTime, $limit);
+    }
+}
+else {
+    if ($showAll) {
+        $query = "SELECT * FROM temperature";
+    }
+    else {
+        $query = sprintf("SELECT * FROM (SELECT * FROM temperature ORDER BY datetime desc LIMIT %d) t ORDER BY datetime asc", $limit);
+    }
 }
 
 //get connection
