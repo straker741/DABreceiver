@@ -186,7 +186,6 @@
                                     <td>
                                     </td>
                                     <td>
-                                        <!-- <input type="submit" onclick="return clickButton();">     -->
                                         <input type="submit" id="sdr">
                                     </td>
                                 </tr>

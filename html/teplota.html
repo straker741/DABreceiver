@@ -11,9 +11,7 @@
     <script type="text/javascript" src="js/navbox.js"></script>
     <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript">window.data_url = "../getTemperature.php?limit=10";</script>
-    <script type="text/javascript" src="js/linegraph.js"></script>
-    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/displayTemp.js"></script>
 </head>
 <body>
     <header>
@@ -35,11 +33,12 @@
             <div class="block_container" id="graf">
                 <div class="block_header">Priebeh teploty snímača DS18B20</div>
                 <div class="block_body">
-                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=lastTen';" value="last 10">
-                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=lastFifty';" value="last 50">
-                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=10';" value="10">
-                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=50';" value="50">
-                    <input style="float: right" type="button" onclick="window.data_url = '../getTemperature.php?limit=all';" value="Show all data">
+                    <input style="float: right" type="button" id="btn_temp_last_10" value="Last 10">
+                    <input style="float: right" type="button" id="btn_temp_last_50" value="Last 50">
+                    <input style="float: right" type="button" id="btn_temp_10" value="10">
+                    <input style="float: right" type="button" id="btn_temp_50" value="50">
+                    <input style="float: right" type="button" id="btn_temp_all" value="Show all data">
+                    
                     <br />
                     <canvas id="myChart" height="120"></canvas>
                 </div>

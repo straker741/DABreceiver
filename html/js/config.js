@@ -1,7 +1,3 @@
-document.getElementById("sdr").addEventListener("click", function() {
-    clickedButton(document.getElementById("sdr"));
-}, false);
-
 function clickedButton(element) {
     switch (element.id) {
         case "sdr":
@@ -25,5 +21,11 @@ function clickedButton(element) {
         default:
             break;
     }
-    return true;
+    return false;
+}
+
+window.onload = function () {
+    document.getElementById("sdr").addEventListener("click", function() {
+        clickedButton(document.getElementById("sdr"));
+    }, false);
 }
