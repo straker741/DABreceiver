@@ -53,6 +53,7 @@ $(document).ready(function () {
 
     // chart update
     var updateChart = function () {
+        // ../getTemperature.php?limit=all
         $.ajax({
             url: window.data_url,
             type: "GET",

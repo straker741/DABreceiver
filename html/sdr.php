@@ -40,6 +40,32 @@
         "239200000" => "13F",
     );
     
+    $hardware = "No data!";
+    $software = "No data!";
+    $network = "No data!";
+    $hostname = "No data!";
+
+    function getSysInfo() {
+        global $hardware;
+        global $software;
+        global $network;
+        global $hostname;
+
+        $info = json_decode(shell_exec('python3 /home/pi/DABreceiver/python/sysInfo.py'), true);
+        if (isset($info["hardware"])) {
+            $hardware = $info["hardware"];
+        }
+        if (isset($info["software"])) {
+            $software = $info["software"];
+        }
+        if (isset($info["network"])) {
+            $network = $info["network"];
+        }
+        if (isset($info["hostname"])) {
+            $hostname = $info["hostname"];
+        }
+    }
+
     function getBandwidth() {		
         $myfile = fopen("/home/pi/DABreceiver/python/bandwidth.txt", "r");
         $bw = trim(fgets($myfile));    
@@ -92,7 +118,8 @@
             shell_exec('python3 /home/pi/DABreceiver/python/eventHandler.py');
 		}
 	}
-	setConfig();
+    setConfig();
+    getSysInfo();
 ?>
 
 <!DOCTYPE html>
@@ -159,7 +186,8 @@
                                     <td>
                                     </td>
                                     <td>
-                                        <input type="submit" onclick="return clickButton();">    
+                                        <!-- <input type="submit" onclick="return clickButton();">     -->
+                                        <input type="submit" id="sdr">
                                     </td>
                                 </tr>
                             </form>					
@@ -180,23 +208,34 @@
                         <tbody>
                             <tr>
                                 <td>Šírka pásma:</td>
-                                <td>
-                                    <?php
-                                       echo getBandwidth();								
-                                    ?>
-                                </td>
+                                <td><?php echo getBandwidth(); ?></td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="block_container">
+                <div class="block_header">
+                    Informácie o zariadení
+                </div>
+                <div class="block_body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Hardware:</td>
+                                <td><?php echo $hardware ?></td>
                             </tr>
                             <tr>
-                                <td>Signal To Noise Ratio:</td>
-                                <td>0.0</td>
+                                <td>Software:</td>
+                                <td><?php echo $software ?></td>
                             </tr>                           
                             <tr>
-                                <td>Bit Error Rate:</td>
-                                <td>0.0</td>
+                                <td>Network:</td>
+                                <td><?php echo $network ?></td>
                             </tr>
                             <tr>
-                                <td>Faulty Fast Information Blocks Error Ratio:</td>
-                                <td>0.0</td>
+                                <td>Hostname:</td>
+                                <td><?php echo $hostname ?></td>
                             </tr>
                         </tbody>
                     </table>
