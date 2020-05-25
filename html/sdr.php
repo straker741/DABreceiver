@@ -159,11 +159,7 @@
                         <tbody>
                             <tr>
                                 <td>Nastavená frekvencia [kHz]:</td>
-                                <td>
-                                    <?php
-                                       echo getFrequency();								
-                                    ?>
-                                </td>
+                                <td><?php echo getFrequency(); ?></td>
                             </tr>
                             <form>
                                 <tr>								
@@ -179,8 +175,7 @@
                                             <option value="explore">Explore</option>
                                             <option value="monitor">Monitor</option>
                                         </select>                                                                       
-                                    </td>
-                                    							
+                                    </td> 							
                                 </tr>
                                 <tr>
                                     <td>
@@ -194,8 +189,7 @@
                     </table>                            
                     <p>Tuner Fitipower FC0012 je schopný fungovať len v pásme Band III.</p>
                     <br />
-                    <hr />
-                    <img id="image_psd" src="obrazky/power_spectral_density.png" alt="Power Spectral Density">
+                    <img id="image_psd" src="obrazky/power_spectral_density.png" alt="Power Spectral Density image">
                 </div>
             </div>
             <div class="block_container">
