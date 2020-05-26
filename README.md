@@ -44,7 +44,7 @@ Zariadenie môže operovať v dvoch módoch. Prvým z nich je mód ***explore***
 ## Konfigurácia
 Konfiguráciu zariadenia je možné vykonať prostredníctvom http stránky, kde môžeme meniť nosnú frekvenciu a pracovný mód. Nosné frekvencie je možné meniť len na presné hodnoty definované pre DAB+ vysielanie v pásme veľmi krátkych vĺn (Band III). Frekvencie s prislúchajúcimi označeniami, ktoré môžeme zvoliť sú uvedené v Tab. 2.
 
-Tab. 2: Nosné frekvencie definované pre DAB+ v pásme Band III
+**Tab. 1:** Nosné frekvencie definované pre DAB+ v pásme Band III
 
 | **Frekvencia [kHz]** | **Kanál** |
 |:----------------:|:-----:|
