@@ -18,10 +18,13 @@ bandwidth = DABplus.checkBandwidth(sdr, f)
 sdr.close()
 
 if True:
+    
     range = 1000
     if (1536000 - range < bandwidth < 1536000 + range):
         cmd = "nohup ~/welle-cli -c " + ch + " >/dev/null 2>&1 &"
         # Executing command - oppening pipe
         subprocess.run(cmd, shell=True)
+    else:
+        print("Bandwidth is not in the range. Aborting!")
 else:
     fileHandler.wFile("/home/pi/DABreceiver/python/bandwidth.txt", bandwidth)
