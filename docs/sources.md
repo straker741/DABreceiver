@@ -38,5 +38,63 @@
 * https://internetofthingsagenda.techtarget.com/definition/microcomputer
 * https://en.wikipedia.org/wiki/Pulse-width_modulation
 
+### Zbernice
+* https://en.wikipedia.org/wiki/1-Wire
+* https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf
+* https://playground.arduino.cc/Learning/OneWire/
+* https://en.wikipedia.org/wiki/Bus_(computing)
+* http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+* https://pimylifeup.com/raspberry-pi-temperature-sensor/
+* https://www.arduinoposlovensky.sk/projekty/dallas-ds18b20/
+* https://www.maximintegrated.com/en/design/technical-documents/tutorials/1/1796.html
+* https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/126.html
+* https://www.maximintegrated.com/en/design/technical-documents/tutorials/1/148.html
+* https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/187.html
+* https://www.instructables.com/id/BASICS-OF-THE-SPI-COMMUNICATION-PROTOCOL/
+* http://www.circuitbasics.com/basics-of-the-spi-communication-protocol/
+* http://www.ti.com/lit/ug/sprugp2a/sprugp2a.pdf
+* http://web.mit.edu/6.111/www/f2017/handouts/L13_4.pdf
+* https://www.embedded.com/introduction-to-serial-peripheral-interface/
+* https://en.wikibooks.org/wiki/Mizar32/SPI
+* https://tessel.io/blog/108840925797/a-web-developers-guide-to-communication-protocols
+* https://www.youtube.com/watch?v=6IAkYpmA1DQ
+* https://i2c.info/i2c-bus-specification
+* https://www.nxp.com/docs/en/user-guide/UM10204.pdf
+* https://www.ni.com/de-at/innovations/white-papers/09/how-to-choose-the-right-bus-for-your-measurement-system.html
+* http://www.portal.strednaskola.eu/doc/zbernice.pdf
+* https://sk.wikipedia.org/wiki/Univerz%C3%A1lna_s%C3%A9riov%C3%A1_zbernica
+* http://www.ti.com/lit/an/slva704/slva704.pdf
+
+### Databazy a web
+* https://en.wikipedia.org/wiki/NoSQL
+* https://en.wikipedia.org/wiki/Database
+* https://en.wikipedia.org/wiki/SQL
+* https://sk.wikipedia.org/wiki/Rela%C4%8Dn%C3%A1_datab%C3%A1za
+* https://sk.wikipedia.org/wiki/Online_Analytical_Processing
+* https://en.wikipedia.org/wiki/MongoDB
+* https://en.wikipedia.org/wiki/Apache_HTTP_Server
+* https://en.wikipedia.org/wiki/World_Wide_Web
+* https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+* https://httpd.apache.org/docs/2.4/getting-started.html
+* https://www.youtube.com/watch?v=eesqK59rhGA
+* https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+* https://w3techs.com/technologies/cross/web_server/ranking
+* https://httpd.apache.org/
+
+### SNMP
+* https://linoxide.com/how-tos/snmp-installation-linux-server/
+* https://www.poftut.com/snmpwalk-command-line-examples/
+* https://support.nagios.com/kb/article.php?id=493
+* http://snmplabs.com/pysnmp/
+* http://snmplabs.com/pysnmp/quick-start.html
+* http://snmplabs.com/pysnmp/docs/pysnmp-hlapi-tutorial.html
+* http://snmplabs.com/pysnmp/examples/hlapi/asyncore/sync/contents.html
+* http://oid-info.com/
+* https://www.webnms.com/snmp/help/snmpapi/snmpv2c/tutorials/traps/llapi_snmpsendtrap.html
+* https://www.noction.com/blog/snmp-traps-explained
+
+### DAB+
+
+
 
 
