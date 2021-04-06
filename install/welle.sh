@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir ~/DABreceiver/welle.io/build
-cd ~/DABreceiver/welle.io/build && cmake ~/DABreceiver/welle.io -DRTLSDR=1 -DBUILD_WELLE_IO=OFF
-cd ~/DABreceiver/welle.io/build && make
-cd ~/DABreceiver/welle.io/build && sudo make install
+mkdir $HOME/DABreceiver/welle.io/build
+cd $HOME/DABreceiver/welle.io/build && cmake $HOME/DABreceiver/welle.io -DRTLSDR=1 -DBUILD_WELLE_IO=OFF
+cd $HOME/DABreceiver/welle.io/build && make
+cd $HOME/DABreceiver/welle.io/build && sudo make install

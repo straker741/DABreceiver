@@ -15,7 +15,8 @@ Užívatelia využívajúci platformu **UNIX** alebo **UNIX-like** môžu altern
 
 Ďalšiu prácu s mikropočítačom budeme realizovať prostredníctvom SSH protokolu, preto po úspešnom ukončení nahrávania obrazu musíme umožniť SSH komunikáciu. 
 * otvoríme boot partíciu (Tento počítač → Zariadenia a jednotky → boot)
-* vytvoríme nový súbor **bez prípony** s názvom **ssh**.
+* vytvoríme nový súbor **bez prípony** s názvom **ssh**
+* opcionálne môžeme nastaviť wifi, kedy postupujeme podľa https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
 * vložíme SD kartu do Raspberry Pi
 * zapneme mikropočítač Raspberry Pi
 * Chvíľu počkáme a pripojíme sa prostredníctvom SSH protokolu

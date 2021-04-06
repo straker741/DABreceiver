@@ -3,7 +3,8 @@
 # Enable 1-Wire
 cmd=$(cat /boot/config.txt | grep '#dtoverlay=w1-gpio')
 
-if [ $cmd == "#dtoverlay=w1-gpio" ]; then
+if [[ $cmd == "#dtoverlay=w1-gpio" ]]
+then
     sudo sed -i -e 's/#dtoverlay=w1-gpio/dtoverlay=w1-gpio/g' /boot/config.txt
 else
     #sudo echo 'dtoverlay=w1-gpio' >> /boot/config.txt          # Permission denied
