@@ -32,8 +32,8 @@ Na záver stiahneme inštalačný skript spolu s ostatnými skriptmi a potrebný
 ```
 sudo apt-get update && sudo apt-get install -y git
 git clone https://github.com/straker741/DABreceiver
-chmod +x DABreceiver/setup.sh
-./DABreceiver/setup.sh
+chmod +x $HOME/DABreceiver/setup.sh
+$HOME/DABreceiver/setup.sh
 ```
 Inštalácia bude prebiehať približne **30 minút**, pričom na začiatku je potrebné, aby sme zadali IPv4 adresu riadiacej jednotky SNMP protokolu a krátky popis, kde sa zariadenie fyzicky nachádza (bude nachádzať).
 
